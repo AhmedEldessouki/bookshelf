@@ -1,9 +1,22 @@
 // 🐨 you'll need to import React and ReactDOM up here
+import React from 'react'
+import ReactDom from 'react-dom'
+import {Logo} from './components/logo'
 
-// 🐨 you'll also need to import the Logo component from './components/logo'
+function App() {
+  const [clicked, setClicked] = React.useState('')
+  return (
+    <>
+      <Logo />
+      <button type="button" onClick={() => setClicked('No `-`')}>
+        login
+      </button>
+      <button type="button" onClick={() => setClicked('Get Out Of Here! -_-')}>
+        register
+      </button>
+      <h1 style={{color: 'red'}}>{clicked}</h1>
+    </>
+  )
+}
 
-// 🐨 create an App component here and render the logo, the title ("Bookshelf"), a login button, and a register button.
-// 🐨 for fun, you can add event handlers for both buttons to alert that the button was clicked
-
-// 🐨 use ReactDOM to render the <App /> to the root element
-// 💰 find the root element with: document.getElementById('root')
+ReactDom.render(<App />, document.getElementById('root'))
