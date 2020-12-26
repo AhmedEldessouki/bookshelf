@@ -7,6 +7,25 @@ import '@reach/dialog/styles.css'
 import Dialog from '@reach/dialog'
 import VisuallyHidden from '@reach/visually-hidden'
 
+function Form({onSubmit, formFor}) {
+  return (
+    <form
+      style={{display: 'flex'}}
+      onSubmit={e => {
+        e.preventDefault()
+        console.log(
+          e.currentTarget.username.value,
+          e.currentTarget.password.value,
+        )
+      }}
+    >
+      <input type="text" name="username" placeholder="Enter Username" />
+      <input name="password" type="password" placeholder="Enter Password" />
+      <button type="submit">{formFor}</button>
+    </form>
+  )
+}
+
 function App() {
   const [show, setShow] = React.useState('none')
 
@@ -34,8 +53,9 @@ function App() {
           <span aria-hidden>×</span>
         </button>
         <h1>{show}</h1>
-        <form
+        <Form
           style={{display: 'flex'}}
+          formFor={show}
           onSubmit={e => {
             e.preventDefault()
             console.log(
@@ -43,11 +63,7 @@ function App() {
               e.currentTarget.password.value,
             )
           }}
-        >
-          <input type="text" name="username" placeholder="Enter Username" />
-          <input name="password" type="password" placeholder="Enter Password" />
-          <button type="submit">Submit</button>
-        </form>
+        />
       </Dialog>
     </div>
   )
